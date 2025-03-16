@@ -125,6 +125,7 @@ function preflight_request_ver1(txn, allowed_methods, allowed_headers)
   txn.http:res_set_header("Access-Control-Allow-Methods", allowed_methods)
   txn.http:res_set_header("Access-Control-Allow-Headers", allowed_headers)
   txn.http:res_set_header("Access-Control-Max-Age", 600)
+  txn.http:res_set_header("Access-Control-Allow-Credentials", "true")
   core.Debug("CORS: attaching allowed methods to response")
 end
 
@@ -145,6 +146,7 @@ function preflight_request_ver2(txn, origin, allowed_methods, allowed_origins, a
   reply:add_header("Access-Control-Allow-Methods", allowed_methods)
   reply:add_header("Access-Control-Allow-Headers", allowed_headers)
   reply:add_header("Access-Control-Max-Age", 600)
+  reply:add_header("Access-Control-Allow-Credentials", "true")
 
   local allowed_origin = M.get_allowed_origin(origin, allowed_origins)
 
